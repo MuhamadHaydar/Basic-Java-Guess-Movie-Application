@@ -17,6 +17,9 @@ public class Game {
     // Save the movie titles.
     LinkedList<String> movieTitles = new LinkedList<>();
 
+    // Random Movie title.
+    String randomMovieTitle = null;
+
     //Game Constructor.
     Game(){
         // initialize scanner through the main constructor.
@@ -28,11 +31,13 @@ public class Game {
             }
         }
 
-        // add whole movie.
+        // Add whole movie.
         addMovieTitles();
+        // Pick one movie title.
+        pickOneMovie();
     }
 
-    // Add whole movie titles to linked list
+    // Add whole movie titles to linked list.
     private void addMovieTitles (){
         while (scanner.hasNext()){
             String movieTitle = scanner.nextLine();
@@ -44,13 +49,16 @@ public class Game {
     public void showTitle(){
         for (int i = 0; i<movieTitles.size(); i ++){
             System.out.println(movieTitles.get(i));
+
         }
     }
 
     //Pick one movie randomly.
-    public void pickOneMovie(){
-
-
+    private void pickOneMovie(){
+        Random random = new Random();
+        int randomNumber = random.nextInt(25);
+        randomMovieTitle = movieTitles.get(randomNumber).toString();
+        System.out.println("Random Movie is:" + randomMovieTitle);
     }
 
 }
