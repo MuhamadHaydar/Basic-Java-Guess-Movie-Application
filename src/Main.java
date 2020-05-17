@@ -1,7 +1,11 @@
+import java.util.Scanner;
+
 public class Main {
     // Main method.
     public static void main (String [] args){
         Game game = new Game();
-        game.showTitle();
+        Scanner scanner = new Scanner(System.in);
+        String output = game.checkTitle(scanner.nextLine().charAt(0));
+        System.out.println(output);
     }
 }

@@ -1,9 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 // Simple class for game operations.
 public class Game {
@@ -57,8 +54,33 @@ public class Game {
     private void pickOneMovie(){
         Random random = new Random();
         int randomNumber = random.nextInt(25);
-        randomMovieTitle = movieTitles.get(randomNumber).toString();
+        randomMovieTitle = movieTitles.get(randomNumber);
         System.out.println("Random Movie is:" + randomMovieTitle);
+    }
+
+
+
+    public String checkTitle(char letter){
+        char[] randomTitle = randomMovieTitle.toCharArray();
+        char[] hiddenRandomTitle = hideTitle(randomMovieTitle);
+        LinkedList<Character> wrongLetters = new LinkedList<>();
+        for (int i =0;i<randomTitle.length;i++){
+            if (randomTitle[i]==letter) {
+                hiddenRandomTitle[i] = letter;
+            }else {
+                wrongLetters.add(letter);
+            }
+        }
+        return String.copyValueOf(hiddenRandomTitle);
+    }
+
+    // Method creates an array of chars according title in "_" sign
+    private char [] hideTitle(String title){
+        char [] hiddenTitle= new char[title.length()];
+        for (int i =0; i<title.length();i++){
+            hiddenTitle[i] ='_';
+        }
+        return hiddenTitle;
     }
 
 }
