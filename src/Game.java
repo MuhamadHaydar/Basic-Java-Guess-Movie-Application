@@ -20,6 +20,9 @@ public class Game {
     // Characters of random title in hidden.
     char[] hiddenRandomMovieTitle = null;
 
+    // Characters of random title in hidden.
+    ArrayList<Character> wrongLetters = new ArrayList<>();
+
     //Game Constructor.
     Game() {
         // initialize scanner through the main constructor.
@@ -66,21 +69,24 @@ public class Game {
 
     // Check title if it contains or not.
     public String checkTitle(char letter) {
-        int fromIndex = 0;
-        int indexOfLetter;
 
-        // Show if the string consist or not.
-        boolean isConsistsOf = true;
-        while (isConsistsOf) {
-            if (randomMovieTitle.indexOf(letter, fromIndex) != -1) {
-                indexOfLetter = randomMovieTitle.indexOf(letter, fromIndex);
-                hiddenRandomMovieTitle[indexOfLetter] = letter;
-                fromIndex++;
-            } else {
-                isConsistsOf = false;
-                break;
+        if (randomMovieTitle.indexOf(letter) != -1) {
+            int i = randomMovieTitle.indexOf(letter);
+            hiddenRandomMovieTitle[i] = letter;
+            while(i >= 0) {
+                System.out.println(i);
+                i = randomMovieTitle.indexOf(letter, i+1);
+                if (i==-1){
+                    break;
+                }
+                hiddenRandomMovieTitle[i] = letter;
+                i++;
             }
         }
+        else if (randomMovieTitle.indexOf(letter) == -1){
+            wrongLetters.add(letter);
+        }
+
         return String.valueOf(hiddenRandomMovieTitle);
     }
 
@@ -102,5 +108,11 @@ public class Game {
     public char[] getHiddenRandomMovieTitle() {
         return hiddenRandomMovieTitle;
     }
+
+    // Get wrong letters.
+    public ArrayList<Character> getWrongLetters() {
+        return wrongLetters;
+    }
+
 
 }
