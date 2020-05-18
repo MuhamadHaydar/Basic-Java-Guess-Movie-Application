@@ -67,7 +67,6 @@ public class Game {
         Random random = new Random();
         int randomNumber = random.nextInt(25);
         randomMovieTitle = movieTitles.get(randomNumber);
-        System.out.println("Random Movie is:" + randomMovieTitle);
     }
 
     // Check title if it contains or not.
