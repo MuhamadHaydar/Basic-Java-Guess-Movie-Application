@@ -5,7 +5,10 @@ public class Main {
     public static void main (String [] args){
         Game game = new Game();
         Scanner scanner = new Scanner(System.in);
-        String output = game.checkTitle(scanner.nextLine().charAt(0));
-        System.out.println(output);
+        while (!String.valueOf(game.getHiddenRandomMovieTitle()).equals(game.getRandomMovieTitle())){
+            String output = game.checkTitle(scanner.nextLine().charAt(0));
+            System.out.println(output);
+        }
+
     }
 }
