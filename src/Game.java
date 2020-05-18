@@ -23,6 +23,9 @@ public class Game {
     // Characters of random title in hidden.
     ArrayList<Character> wrongLetters = new ArrayList<>();
 
+    // Points of the game.
+    int points = 10;
+
     //Game Constructor.
     Game() {
         // initialize scanner through the main constructor.
@@ -69,22 +72,32 @@ public class Game {
 
     // Check title if it contains or not.
     public String checkTitle(char letter) {
-
+        // check if the word consist of the letter or not.
         if (randomMovieTitle.indexOf(letter) != -1) {
+            // Get index of the first letter.
             int i = randomMovieTitle.indexOf(letter);
+            // Add letter to the index of hiddenRandomMovieTitle.
             hiddenRandomMovieTitle[i] = letter;
+            // Check if we have more than one letter.
             while(i >= 0) {
                 System.out.println(i);
+                // Get index of other letter.
                 i = randomMovieTitle.indexOf(letter, i+1);
+                // If it returns -1 means it doesn't contain this letter any more.
                 if (i==-1){
                     break;
                 }
+                // Add letter to hiddenRandomMovie.
                 hiddenRandomMovieTitle[i] = letter;
+                // Add i;
                 i++;
             }
         }
+        // If the word is not contained letter.
         else if (randomMovieTitle.indexOf(letter) == -1){
+            // Add letter to wrong letters.
             wrongLetters.add(letter);
+            points = points -1;
         }
 
         return String.valueOf(hiddenRandomMovieTitle);
@@ -113,6 +126,12 @@ public class Game {
     public ArrayList<Character> getWrongLetters() {
         return wrongLetters;
     }
+
+    // Use this in order to get points of the game.
+    public int getPoints() {
+        return points;
+    }
+
 
 
 }
